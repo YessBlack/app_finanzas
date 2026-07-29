@@ -4,13 +4,129 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Finanzas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 </head>
 
 <body>
+  <main class="main">
 
-  <script src="app.js"></script>
+    <div class="header">
+      <h1>Mis Finanzas Personales</h1>
+    </div>
+
+    <div class="cards">
+      <div class="card">
+        <p class="cardLabel">Gasto de Hoy</p>
+        <div class="cardValue">
+          <span class="textValue" id="todayExpense">$0</span>
+        </div>
+        <p class="cardSummary">Gasto total de hoy</p>
+      </div>
+
+      <div class="card">
+        <p class="cardLabel">Gasto del Mes</p>
+        <div class="cardValue">
+          <span class="textValue" id="monthExpense">$0</span>
+        </div>
+        <p class="cardSummary">Gasto total del mes</p>
+      </div>
+    </div>
+
+    <div class="categories">
+
+      <div class="category-card">
+        <div class="category-icon">
+          <i class="fa-solid fa-utensils"></i>
+        </div>
+        <div class="category-info">
+          <span>Comida</span>
+          <h3>$ <span id="gastoComida">0</span></h3>
+        </div>
+      </div>
+
+
+      <div class="category-card">
+        <div class="category-icon">
+          <i class="fa-solid fa-bus"></i>
+        </div>
+        <div class="category-info">
+          <span>Transporte</span>
+          <h3>$ <span id="gastoTransporte">0</span></h3>
+        </div>
+      </div>
+
+
+      <div class="category-card">
+        <div class="category-icon">
+          <i class="fa-solid fa-film"></i>
+        </div>
+        <div class="category-info">
+          <span>Entretenimiento</span>
+          <h3>$ <span id="gastoEntretenimiento">0</span></h3>
+        </div>
+      </div>
+
+
+      <div class="category-card">
+        <div class="category-icon">
+          <i class="fa-solid fa-file-invoice-dollar"></i>
+        </div>
+        <div class="category-info">
+          <span>Servicios</span>
+          <h3>$ <span id="gastoServicios">0</span></h3>
+        </div>
+      </div>
+
+
+      <div class="category-card">
+        <div class="category-icon">
+          <i class="fa-solid fa-circle-question"></i>
+        </div>
+        <div class="category-info">
+          <span>Otros</span>
+          <h3>$ <span id="gastoOtros">0</span></h3>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="content">
+      <div class="form-container">
+        <div class="form-card">
+          <label class="form-label">Descripción</label>
+          <input type="text" class="form-input" placeholder="Ej: Café con amigos" id="descripción" />
+
+          <label class="form-label">Monto</label>
+          <input type="text" class="form-input" placeholder="$ 0.00" id="monto" />
+
+          <label class="form-label">Categoría</label>
+          <select class="form-input" id="categoria">
+            <option>Comida</option>
+            <option>Transporte</option>
+            <option>Entretenimiento</option>
+            <option>Servicios</option>
+            <option>Otros</option>
+          </select>
+
+          <button class="submit-btn" id="addItem">Registrar Gasto</button>
+        </div>
+      </div>
+
+      <div class="list-container">
+        <h2 class="list-title">Transacciones recientes</h2>
+        <ul class="expense-list" id="listGastos"></ul>
+      </div>
+    </div>
+
+  </main>
+
+  <script src="script.js" type="module"></script>
 </body>
 
 </html>
