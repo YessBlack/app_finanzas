@@ -14,118 +14,85 @@
 </head>
 
 <body>
-  <main class="main">
-
+  <div class="container">
     <div class="header">
-      <h1>Mis Finanzas Personales</h1>
+      <h1>Mis finanzas</h1>
+      <p>
+        Lleva el control de tu dinero de forma sencilla. Registra tus ingresos, gastos y categorías, consulta
+        estadísticas en tiempo real y mantén tus finanzas siempre bajo control desde una interfaz intuitiva.
+      </p>
     </div>
 
-    <div class="cards">
-      <div class="card">
-        <p class="cardLabel">Gasto de Hoy</p>
-        <div class="cardValue">
-          <span class="textValue" id="todayExpense">$0</span>
-        </div>
-        <p class="cardSummary">Gasto total de hoy</p>
+    <div class="cards" id="filtersCards">
+      <div class="card active" data-id="todos">
+        <h2 class="title">Gasto Total</h2>
+        <p class="price">$ <span id="gastoTodos">0.00</span></p>
+        <p class="description">Gasto total del historico</p>
       </div>
 
-      <div class="card">
-        <p class="cardLabel">Gasto del Mes</p>
-        <div class="cardValue">
-          <span class="textValue" id="monthExpense">$0</span>
-        </div>
-        <p class="cardSummary">Gasto total del mes</p>
+      <div class="card" data-id="dia">
+        <h2 class="title">Gasto de Hoy</h2>
+        <p class="price">$ <span id="gastoDia">0.00</span></p>
+        <p class="description">Gasto total de hoy</p>
+      </div>
+
+      <div class="card" data-id="mes">
+        <h2 class="title">Gasto del Mes</h2>
+        <p class="price">$ <span id="gastoMes">0.00</span></p>
+        <p class="description">Gasto total del mes</p>
       </div>
     </div>
 
-    <div class="categories">
+    <h2>Gastos por Categoría</h2>
 
-      <div class="category-card">
-        <div class="category-icon">
-          <i class="fa-solid fa-utensils"></i>
-        </div>
-        <div class="category-info">
-          <span>Comida</span>
-          <h3>$ <span id="gastoComida">0</span></h3>
-        </div>
-      </div>
+    <div class="gastosByCategoria" id="gastosByCategory"></div>
 
-
-      <div class="category-card">
-        <div class="category-icon">
-          <i class="fa-solid fa-bus"></i>
-        </div>
-        <div class="category-info">
-          <span>Transporte</span>
-          <h3>$ <span id="gastoTransporte">0</span></h3>
-        </div>
-      </div>
-
-
-      <div class="category-card">
-        <div class="category-icon">
-          <i class="fa-solid fa-film"></i>
-        </div>
-        <div class="category-info">
-          <span>Entretenimiento</span>
-          <h3>$ <span id="gastoEntretenimiento">0</span></h3>
-        </div>
-      </div>
-
-
-      <div class="category-card">
-        <div class="category-icon">
-          <i class="fa-solid fa-file-invoice-dollar"></i>
-        </div>
-        <div class="category-info">
-          <span>Servicios</span>
-          <h3>$ <span id="gastoServicios">0</span></h3>
-        </div>
-      </div>
-
-
-      <div class="category-card">
-        <div class="category-icon">
-          <i class="fa-solid fa-circle-question"></i>
-        </div>
-        <div class="category-info">
-          <span>Otros</span>
-          <h3>$ <span id="gastoOtros">0</span></h3>
-        </div>
-      </div>
-
-    </div>
+    <h2>Registros de Gastos</h2>
 
     <div class="content">
-      <div class="form-container">
-        <div class="form-card">
-          <label class="form-label">Descripción</label>
-          <input type="text" class="form-input" placeholder="Ej: Café con amigos" id="descripción" />
+      <form class="form">
+        <h3>Registrar</h3>
 
-          <label class="form-label">Monto</label>
-          <input type="text" class="form-input" placeholder="$ 0.00" id="monto" />
-
-          <label class="form-label">Categoría</label>
-          <select class="form-input" id="categoria">
-            <option>Comida</option>
-            <option>Transporte</option>
-            <option>Entretenimiento</option>
-            <option>Servicios</option>
-            <option>Otros</option>
-          </select>
-
-          <button class="submit-btn" id="addItem">Registrar Gasto</button>
+        <div class="group">
+          <label for="description">Descripción</label>
+          <input type="text" id="description" placeholder="Tarde de Cafe">
         </div>
-      </div>
+        <div class="group">
+          <label for="monto">Monto</label>
+          <input type="number" id="monto" placeholder="50000">
+        </div>
+        <div class="group">
+          <label for="categoria">Categoria</label>
+          <select name="categoria" id="categoria">
+            <option value="Comida">Comida</option>
+            <option value="Transporte">Transporte</option>
+            <option value="Servicios">Servicios</option>
+            <option value="Entretenimiento">Entretenimiento</option>
+            <option value="Otros">Otros</option>
+          </select>
+        </div>
+        <button class="btnRegistrar" id="btnRegistrar" type="button">Registrar</button>
+      </form>
 
-      <div class="list-container">
-        <h2 class="list-title">Transacciones recientes</h2>
-        <ul class="expense-list" id="listGastos"></ul>
+      <div class="items">
+        <h3>Movimientos</h3>
+
+        <div class="itemsHeader">
+          <span></span>
+          <span>Descripción</span>
+          <span>Monto</span>
+          <span>Acción</span>
+        </div>
+
+        <div id="list"></div>
       </div>
     </div>
 
-  </main>
+  </div>
 
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+    crossorigin="anonymous"></script>
   <script src="script.js" type="module"></script>
 </body>
 

@@ -1,24 +1,29 @@
 export const CardGasto = (gasto) => {
+  const fecha = new Date(gasto.fecha).toLocaleDateString('es-ES', {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric'
+  });
+
   return `
-    <li class="expense-item">
-      <div class="expense-icon">
-        <i class="fa-solid fa-money-bill-wave"></i>
+    <div class="item">
+      <div class="icon">
+        <i class="fa-solid fa-star"></i>
       </div>
 
-      <div class="expense-info">
-        <p class="expense-name">${gasto.descripcion}</p>
-        <p class="expense-category">${gasto.categoria}</p>
-        <p class="expense-category">${gasto.fecha.slice(0, -14)}</p>
+      <div class="info">
+        <p>${gasto.descripcion}</p>
+        <span class="categoria">${gasto.categoria}</span>
+        <span class="fecha">${fecha}</span>
       </div>
 
-      <span class="expense-amount">$${gasto.monto}</span>
+      <p class="precio">$${gasto.monto}</p>
 
       <button
-        class="delete-btn"
-        data-id="${gasto.id}"
-        aria-label="Eliminar">
-        <i class="fa-solid fa-trash"></i>
+        class="btnDelete"
+        data-id="${gasto.id}">
+          <i class="fa-solid fa-trash"></i>
       </button>
-    </li>
-  `;
-};
+    </div>
+  `
+}
